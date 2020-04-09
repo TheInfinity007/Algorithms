@@ -4,8 +4,8 @@ class Main
 {
     public static  void main(String[] args) {
         String input = "2\n5\n4 1 3 9 7\n10\n10 9 8 7 6 5 4 3 2 1";
-        Scanner sc = new Scanner(input);
-        // Scanner sc = new Scanner(System.in);
+        // Scanner sc = new Scanner(input);
+        Scanner sc = new Scanner(System.in);
         System.out.println("No of test Case: ");
         int tCase = sc.nextInt();
         System.out.println(tCase);
