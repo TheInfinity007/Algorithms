@@ -23,7 +23,7 @@ class Main
             }
             System.out.println();
 
-            quickSort(arr, 0, arr.length-1);
+            heapSort(arr, arr.length);
 
             System.out.println("Array after sorting: ");
             for(int i : arr){
@@ -33,37 +33,41 @@ class Main
             tCase--;
         }
     }
-
-    static void quickSort(int arr[], int l, int r )
+    
+    static void heapSort(int arr[], int n)
     {
-        if(l < r)
+        for(int i = (n-2)/2; i >= 0; i--)
+            heapify(arr, n, i);
+        //now the largest item is stored at the root of the heap.
+
+        for(int i = n-1; i > 0; i--)
         {
-            int pivot = partition(arr, l, r);
-            quickSort(arr, l, pivot-1);
-            quickSort(arr, pivot+1, r);
+            //move current root to end
+            int temp = arr[0];
+            arr[0] = arr[i];
+            arr[i] = temp;
+
+            //call maxheapify on the reduced heap
+            heapify(arr, i, 0);
         }
     }
 
-    static int partition(int arr[], int l, int r)
+    static void heapify(int arr[], int n, int i)
     {
-        int pivot = arr[r];
-        int i, j, temp;
-
-        i = l-1;
-        for(j = l; j < r; j++)
+        int child;
+        child = 2*i+1;
+        if(child+1 < n && arr[child+1] > arr[child])
+            child++;
+        if(child < n && arr[child] > arr[i])
         {
-            if(arr[j] <= pivot){
-                i++;
-                temp = arr[j];
-                arr[j] = arr[i];
-                arr[i] = temp;
-            }
-        }
-        temp = arr[i+1];
-        arr[i+1] = pivot;
-        arr[r] = temp;
+            //swap
+            int temp = arr[child];
+            arr[child] = arr[i];
+            arr[i] = temp;
 
-        return i+1;
+            heapify(arr, n, child);
+        }
     }
+
 
 }
