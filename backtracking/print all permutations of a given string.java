@@ -1,7 +1,16 @@
+// This can contain the duplicated permutation if the input string contains duplicates
+
 class printAllPermutation{
     public static void main(String[] args) {
+
+        System.out.println("Permutation of ABC");
         String input = "ABC";
         int n = input.length();
+        permute(input, 0, n-1);        
+
+        System.out.println("Permutation of AAB");
+        input = "AAB";
+        n = input.length();
         permute(input, 0, n-1);        
     }
 
